@@ -1,0 +1,41 @@
+@(notif : Notification, segment : SegmentMetadata)
+
+@main("Notification Details") {
+
+  <h2>Notification: @notif.name</h2>
+  <div class="box">
+    <h3>Details</h3>
+    <div>Name: <bold>@notif.name</bold></div>
+    <div>Description: @notif.description</div>
+    <div>
+      <h4>Segment: @segment.getName()</h4>
+      <div>@segment.getDescription()</div>
+      @if(segment.getOutputParameters().size() > 0) {
+        <div>
+          <div>Message Parameters</div>
+          <lu>
+          @for(param <- segment.getOutputParameters()) {
+            <li>@param.name</li>
+          }
+          </lu>
+        </div>
+      }
+
+    </div>
+  </div>
+
+
+  <div class="box">
+    <h4>Copy Tests</h4>
+    <div id="tests-table"></div>
+  </div>
+
+  <link rel="stylesheet" href='@routes.Assets.at("stylesheets/jquery.handsontable.full.css")'>
+  <script src='@routes.Assets.at("javascripts/jquery.handsontable.full.js")' type="text/javascript"></script>
+
+  <script src='@routes.Assets.at("javascripts/data_load.js")' type="text/javascript"></script>
+  <script>
+      // Bind the copy test table to the tests-table element
+      table_copytest($('#tests-table'), '@notif.id')
+  </script>
+}

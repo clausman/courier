@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           @controllers.Notifications.list()
+
+# Notification configurations
+GET     /notifs                     @controllers.Notifications.list()
+GET     /notifs/new                 @controllers.Notifications.create()
+GET     /notifs/:id                 @controllers.Notifications.details(id: Long)
+POST    /notifs/                    @controllers.Notifications.save()
+
+# Copy test api methods
+GET     /tests/:notif               @controllers.CopyTests.list(notif: Long)
+POST    /tests/                     @controllers.CopyTests.save()
+POST    /tests/resolve              @controllers.CopyTests.resolve()
+
+GET     /assets/javascripts/routes  controllers.Application.javascriptRoutes()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+

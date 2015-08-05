@@ -1,0 +1,19 @@
+@(notifForm : Form[Notification], segmentNames : List[String])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Notification Form") {
+  <h1>Notification Form</h1>
+  @helper.form(action = routes.Notifications.save()) {
+    <fieldset>
+      <legend>Notification (@notifForm("Name").valueOr("New"))</legend>
+      @helper.inputText(notifForm("name"), '_label_ -> "Name")
+      @helper.inputText(notifForm("description"), '_label_ -> "Description")
+      <!-- Make this a type-ahead dropdown instead -->
+      @helper.select(notifForm("segmentName"), options(segmentNames),
+        '_label_ -> "Segment")
+    </fieldset>
+    <input type="submit" class="btn btn-primary" value="Save">
+    <a class="btn" href="@routes.Notifications.list()">Cancel</a>
+  }
+}

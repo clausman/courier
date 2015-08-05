@@ -1,0 +1,31 @@
+notifications:
+    - &notif1 !!models.Notification
+        name: dormant_user
+        description: A user hasnt used the app in a while
+        segmentName: Dormant Users
+
+messages:
+    - &msg1 !!models.Message
+        key: Haven't been to ${APP} in a while? We miss you too. Come visit!
+        url: /
+    - &msg2 !!models.Message
+        key: We've released some great new features. Come check them out!
+        url: /
+
+
+copyTests:
+    - &test1 !!models.CopyTest
+        notification: *notif1
+        message: *msg1
+        testId: 1
+        sendLimit: 100
+        enabled: true
+        startDate: 2014-01-01
+        endDate: 2015-06-01
+    - &test2 !!models.CopyTest
+        notification: *notif1
+        message: *msg2
+        testId: 2
+        sendLimit: 100
+        enabled: true
+

@@ -1,0 +1,19 @@
+@(notifications : Collection[Notification])
+
+@main("Notifications") {
+  <h2>Notifications</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+    @for(notif <- notifications) {
+      <td><a href="@routes.Notifications.details(notif.id)">@notif.name</a></td>
+    }
+    </tbody>
+  </table>
+
+  <a href="@routes.Notifications.create()">Create<i class="icon icon-pencil"></i></a>
+}
