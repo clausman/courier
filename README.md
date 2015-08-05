@@ -1,4 +1,5 @@
 Courier is a generic application for sending messages to users. Some common examples include email and Facebook notifications. Courier breaks down the process into the following steps:
+
   1) Generate list of users and their data that will be needed to populate messages
   2) Resolve message templates into resolved messages which will be sent to users
   3) Send the resolved messages to users
@@ -18,17 +19,20 @@ Here are some example scenarios where you would need to implement custom service
 
 
 ++ Use external email service
+
 First off implement the email service to send emails to users
-`
+
+```
 public class EmailService implements PublishService {
 	public void publish(RawMessage message, User user) {
 		// TODO Implement logic to send emails to users 
 	}
 }
-`
+```
 
 Next extend custom settings to setup dependency injection to use your email service
-`
+
+```
 public class EmailSettings extends CustomSettings {
 	@Override
 	public Injector createInjector()
@@ -41,7 +45,7 @@ public class EmailSettings extends CustomSettings {
 		})
 	}
 }
-`
+```
 
 
 ++ TODO Add more examples
@@ -59,7 +63,7 @@ also all the data required to resolve a message.
 While you certainly can implement your own SegmentStore, the out-of-the-box Courier represents each segment as its own class.
 Creating a new segment is a simple matter of implementing the segment interface or one of the helper base classes
 
-`
+```
 public class BadgeEarnedSegment extends GeneratedSegment {
   public static final Text BADGE_NAME = new Text("badge_name");
 
@@ -85,7 +89,7 @@ public class BadgeEarnedSegment extends GeneratedSegment {
     }
   }
 }
-`
+```
 
 Using the built-in MessageService, some example messages for the above segment would be:
   "Congrats on earning the <badge_name> badge!"
