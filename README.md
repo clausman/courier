@@ -9,8 +9,11 @@ The application design aims to make each step pluggable, so it is easy to adopt 
 The design also aims to allow easy extension of each step, so custom templating or i18N solutions are trivial to implement. Each steps logic is abstracted into a service which has a default implementation that you more than likely will want to override in most scenarios. Here is a description of each default implementation:
 
 FileSegmentService - Reads segment data from local files.
+
 FileMessageService - Reads message templates from local files. Uses StringTemplate to resolve templates. Does not include and i18N support.
+
 EmailLocalPublishService - publishes messages using the machines java mail setup. Is fine for testing but should not be used on large scale systems.
+
 LocalSegmentStore - Resolves segment names to segment objects using a map. Since segments are generally bound at startup, this store should be sufficient in nearly all cases
 
 
@@ -92,7 +95,9 @@ public class BadgeEarnedSegment extends GeneratedSegment {
 ```
 
 Using the built-in MessageService, some example messages for the above segment would be:
+
   "Congrats on earning the <badge_name> badge!"
+  
   "Nice work! You just earned the <badge_name> badge!"
 
 
