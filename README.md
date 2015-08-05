@@ -19,16 +19,16 @@ Here are some example scenarios where you would need to implement custom service
 
 ++ Use external email service
 First off implement the email service to send emails to users
-<code>
+`
 public class EmailService implements PublishService {
 	public void publish(RawMessage message, User user) {
 		// TODO Implement logic to send emails to users 
 	}
 }
-</code>
+`
 
 Next extend custom settings to setup dependency injection to use your email service
-<code>
+`
 public class EmailSettings extends CustomSettings {
 	@Override
 	public Injector createInjector()
@@ -41,7 +41,7 @@ public class EmailSettings extends CustomSettings {
 		})
 	}
 }
-</code>
+`
 
 
 ++ TODO Add more examples
@@ -59,7 +59,7 @@ also all the data required to resolve a message.
 While you certainly can implement your own SegmentStore, the out-of-the-box Courier represents each segment as its own class.
 Creating a new segment is a simple matter of implementing the segment interface or one of the helper base classes
 
-<code>
+`
 public class BadgeEarnedSegment extends GeneratedSegment {
   public static final Text BADGE_NAME = new Text("badge_name");
 
@@ -85,7 +85,7 @@ public class BadgeEarnedSegment extends GeneratedSegment {
     }
   }
 }
-</code>
+`
 
 Using the built-in MessageService, some example messages for the above segment would be:
   "Congrats on earning the <badge_name> badge!"
